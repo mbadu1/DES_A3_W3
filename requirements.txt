@@ -1,5 +1,6 @@
-pandas 
+pandas
 seaborn
 matplotlib
 scikit-learn
 ipykernel
+pytest
