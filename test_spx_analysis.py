@@ -39,7 +39,6 @@ class TestDataCleaning(unittest.TestCase):
     # Additional comprehensive test cases
     
     def test_read_fn_columns_exist(self):
-        """Test that required columns exist in the loaded data"""
         expected_columns = ['Date', 'SPX', 'GLD', 'SLV']
         for col in expected_columns:
             self.assertIn(col, self.df.columns, f"Column '{col}' missing from DataFrame")
@@ -57,7 +56,6 @@ class TestDataCleaning(unittest.TestCase):
             read_fn('non_existent_file.csv')
 
     def test_process_date_fn_datetime_conversion(self):
-        """Test that Date column is properly converted to datetime and set as index"""
         df_processed = process_date_fn(self.df.copy())
         
         # Check that Date is now the index and is datetime type
@@ -74,7 +72,6 @@ class TestDataCleaning(unittest.TestCase):
                               msg="SPX values should be preserved during processing")
 
     def test_process_date_fn_handles_invalid_dates(self):
-        """Test handling of invalid date formats"""
         invalid_data = self.df.copy()
         invalid_data.loc[0, 'Date'] = 'invalid-date'
         
@@ -84,17 +81,14 @@ class TestDataCleaning(unittest.TestCase):
             process_date_fn(invalid_data)
 
     def test_dataframe_not_empty(self):
-        """Test that the loaded DataFrame is not empty"""
         self.assertGreater(len(self.df), 0, "DataFrame should not be empty")
         self.assertGreater(self.df.shape[1], 0, "DataFrame should have columns")
 
     def test_no_all_null_columns(self):
-        """Test that no columns are entirely null"""
         for column in self.df.columns:
             self.assertFalse(self.df[column].isnull().all(), f"Column '{column}' should not be entirely null")
 
     def test_numeric_columns_have_valid_ranges(self):
-        """Test that numeric columns have reasonable value ranges"""
         df_processed = process_date_fn(self.df.copy())
         
         # SPX should be positive and within reasonable range
@@ -108,7 +102,6 @@ class TestDataCleaning(unittest.TestCase):
         self.assertTrue((df_processed['SLV'] > 0).all(), "SLV values should be positive")
 
     def test_date_range_validity(self):
-        """Test that dates fall within expected range"""
         df_processed = process_date_fn(self.df.copy())
         
         min_date = df_processed.index.min()
@@ -119,7 +112,6 @@ class TestDataCleaning(unittest.TestCase):
         self.assertLessEqual(max_date.year, 2025, "Maximum date should be 2025 or earlier")
 
     def test_correlation_calculation(self):
-        """Test that correlation matrix can be calculated"""
         df_processed = process_date_fn(self.df.copy())
         
         # Should be able to calculate correlation without errors
@@ -147,7 +139,6 @@ class TestDataCleaning(unittest.TestCase):
                         "SPX should not have extreme single-day changes (>50%)")
 
     def test_missing_data_handling(self):
-        """Test behavior with missing data"""
         df_with_na = self.df.copy()
         df_with_na.loc[0, 'SPX'] = None
         
@@ -157,7 +148,6 @@ class TestDataCleaning(unittest.TestCase):
         self.assertIsInstance(df_processed, pd.DataFrame, "Should return DataFrame even with NaN values")
 
     def test_duplicate_dates_handling(self):
-        """Test handling of duplicate dates"""
         df_with_duplicates = self.df.copy()
         df_with_duplicates = pd.concat([df_with_duplicates, df_with_duplicates.iloc[:1]], ignore_index=True)
         
