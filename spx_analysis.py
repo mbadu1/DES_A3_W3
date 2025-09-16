@@ -25,20 +25,20 @@ df = process_date_fn(df)
 
 
 
-# # Display first few rows to understand the data structure
-# df.head()
-# # Display info about column types and non-null counts
-# df.info()
-# # Display descriptive statistics for numeric columns
-# df.describe()
+#Display first few rows to understand the data structure
+df.head()
+# Display info about column types and non-null counts
+df.info()
+# Display descriptive statistics for numeric columns
+df.describe()
 
 
 
-# df.head()
-# # Compute and print correlation matrix between variables
-# df.corr()
-# sns.heatmap(df.corr(), cmap="coolwarm")
-# df['SPX'].plot()
+df.head()
+# Compute and print correlation matrix between variables
+df.corr()
+sns.heatmap(df.corr(), cmap="coolwarm")
+df['SPX'].plot()
 # from sklearn.linear_model import LinearRegression
 # #Looking into the regression of the data
 # lr=LinearRegression()
