@@ -215,4 +215,6 @@ scikit-learn>=1.0.0  # Optional, for ML features
 - **Email**: michael.badu@duke.edu
 - **GitHub**: [@mbadu1](https://github.com/mbadu1)
 
-s
+## Disclosure
+This project was developed with partial assistance from ChatGPT an AI language model by OpenAI.
+ChatGPT was helpful for test scenerio's generation and this readme file
