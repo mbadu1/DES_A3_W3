@@ -44,14 +44,12 @@ class TestDataCleaning(unittest.TestCase):
             self.assertIn(col, self.df.columns, f"Column '{col}' missing from DataFrame")
 
     def test_read_fn_data_types(self):
-        """Test that data types are as expected after reading"""
         self.assertTrue(pd.api.types.is_object_dtype(self.df['Date']), "Date should be object type initially")
         self.assertTrue(pd.api.types.is_numeric_dtype(self.df['SPX']), "SPX should be numeric")
         self.assertTrue(pd.api.types.is_numeric_dtype(self.df['GLD']), "GLD should be numeric")
         self.assertTrue(pd.api.types.is_numeric_dtype(self.df['SLV']), "SLV should be numeric")
 
     def test_read_fn_file_not_found(self):
-        """Test handling of non-existent file"""
         with self.assertRaises(FileNotFoundError):
             read_fn('non_existent_file.csv')
 

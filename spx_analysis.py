@@ -32,9 +32,6 @@ df.info()
 # Display descriptive statistics for numeric columns
 df.describe()
 
-
-
-df.head()
 # Compute and print correlation matrix between variables
 df.corr()
 sns.heatmap(df.corr(), cmap="coolwarm")
