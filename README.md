@@ -99,6 +99,9 @@ image 2
 image 3
 ![alt text](image-3.png)
 
+image 4 # Rolling correlation between SPX and GLD
+![alt text](image-4.png)
+
 ### Running the Complete Analysis
 
 ```bash
