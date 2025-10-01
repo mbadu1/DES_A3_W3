@@ -1,6 +1,8 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error
 
 
 def read_file_fn(filename: str):
@@ -40,37 +42,38 @@ df.corr()
 sns.heatmap(df.corr(), cmap="coolwarm")
 df["SPX"].plot()
 # Linear regression model
-from sklearn.linear_model import LinearRegression
-lr=LinearRegression()
+
+lr = LinearRegression()
 y = df['SPX']
 x = df[['GLD', 'SLV']]
-lr.fit(x,y)
+lr.fit(x, y)
 
 LinearRegression()
 
 predict = lr.predict(x)
 
-sns.lineplot(data=df,y='SPX',x=df.index)
-sns.lineplot(y=predict,x=df.index)
+sns.lineplot(data=df, y='SPX', x=df.index)
+sns.lineplot(y=predict, x=df.index)
 
-from sklearn.metrics import mean_absolute_error,mean_absolute_percentage_error
-
-mean_absolute_error(y,predict)
-mean_absolute_percentage_error(y,predict)
+mean_absolute_error(y, predict)
+mean_absolute_percentage_error(y, predict)
 # Rolling correlation between SPX and GLD
 rolling_corr = df['SPX'].rolling(90).corr(df['GLD'])
 # Rolling correlation (SPX vs GLD)
 plt.figure(figsize=(10, 6))
 plt.plot(df.index, rolling_corr, label='90-day Rolling Corr (SPX vs GLD)')
-plt.axvline(pd.Timestamp('2020-03-01'), color='r', linestyle='--', label='COVID Crash')
-plt.axvline(pd.Timestamp('2022-06-01'), color='g', linestyle='--', label='2022 Inflation Peak')
+plt.axvline(pd.Timestamp('2020-03-01'),
+            color='r', linestyle='--', label='COVID Crash')
+plt.axvline(pd.Timestamp('2022-06-01'),
+            color='g', linestyle='--', label='2022 Inflation Peak')
 plt.legend()
 plt.title("Time-varying SPX/GLD Correlation\n(Key macro events annotated)")
 plt.show()
 # Rolling correlation (SPX vs GLD)
 window = 60
 df["SPX_vol_z"] = (
-    df["SPX"].pct_change().rolling(window).std().transform(lambda x: (x - x.mean()) / x.std())
+    df["SPX"].pct_change().rolling(window).std()
+    .transform(lambda x: (x - x.mean()) / x.std())
 )
 plt.figure(figsize=(10, 5))
 plt.plot(df.index, df["SPX_vol_z"], label="SPX Volatility Z-Score")
@@ -82,10 +85,12 @@ plt.xlabel("Date")
 plt.tight_layout()
 plt.show()
 
+
 def compute_drawdown(series):
     peak = series.cummax()
     dd = (series - peak) / peak
     return dd
+
 
 dd_spx = compute_drawdown(df["SPX"])
 dd_gld = compute_drawdown(df["GLD"])
