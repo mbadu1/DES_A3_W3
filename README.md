@@ -102,6 +102,10 @@ image 3
 image 4 # Rolling correlation between SPX and GLD
 ![alt text](image-4.png)
 
+image 5 # Market Regime Detection (Z-Score Volatility Regimes)
+![alt text](image-5.png)
+Purpose: Identify periods of unusually high or low volatility ("market regimes") and see if asset correlations differ during those regimes.
+
 ### Running the Complete Analysis
 
 ```bash
