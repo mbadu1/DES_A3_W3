@@ -240,7 +240,7 @@ scikit-learn>=1.0.0  # Optional, for ML features
 I refactored a few sections of my code, particularly including a flake8 portion in the Makefile and updating one method and its variables altogether.
 ![alt text](<Refactor -1.png>)
 ## Workflow samples
-![alt text](<Refactor 3.png>)
+![alt text](<workflow.png>)
 ## Contact
 
 - Author: Michael Badu
