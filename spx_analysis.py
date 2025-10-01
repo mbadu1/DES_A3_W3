@@ -2,7 +2,7 @@ import pandas as pd
 import seaborn as sns
 
 
-def read_fn(filename: str):
+def read_file_fn(filename: str):
     # Read csv file downloaded from kaggle
     df = pd.read_csv(filename)
     return df
@@ -22,7 +22,8 @@ def process_date_fn(df: pd.DataFrame) -> pd.DataFrame:
 
 
 filename = "gold_data_2015_25.csv"
-df = read_fn(filename)
+jls_extract_var = read_file_fn
+df = jls_extract_var(filename)
 df = process_date_fn(df)
 
 

@@ -2,7 +2,7 @@ import pandas as pd
 import unittest
 import tempfile
 import os
-from spx_analysis import read_fn, process_date_fn
+from spx_analysis import read_file_fn, process_date_fn
 
 
 class TestDataCleaning(unittest.TestCase):
@@ -29,7 +29,7 @@ class TestDataCleaning(unittest.TestCase):
         test_df.to_csv(self.temp_file.name, index=False)
         self.temp_file.close()
 
-        self.df = read_fn(self.temp_file.name)
+        self.df = read_file_fn(self.temp_file.name)
 
     def tearDown(self):
         # Clean up temporary file
@@ -73,7 +73,7 @@ class TestDataCleaning(unittest.TestCase):
 
     def test_read_fn_file_not_found(self):
         with self.assertRaises(FileNotFoundError):
-            read_fn("non_existent_file.csv")
+            read_file_fn("non_existent_file.csv")
 
     def test_process_date_fn_datetime_conversion(self):
         df_processed = process_date_fn(self.df.copy())
@@ -245,7 +245,7 @@ class TestDataCleaning(unittest.TestCase):
         empty_temp.close()
 
         try:
-            empty_loaded = read_fn(empty_temp.name)
+            empty_loaded = read_file_fn(empty_temp.name)
             self.assertEqual(
                 len(empty_loaded), 0,
                 "Empty file should result in empty DataFrame"
