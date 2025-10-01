@@ -87,6 +87,10 @@ print(df_processed.describe())
 correlations = df_processed.corr()
 print(correlations)
 ```
+## Project Visualizations
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
 
 ### Running the Complete Analysis
 
