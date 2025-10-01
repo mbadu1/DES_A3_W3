@@ -106,6 +106,9 @@ image 5 # Market Regime Detection (Z-Score Volatility Regimes)
 ![alt text](image-5.png)
 Purpose: Identify periods of unusually high or low volatility ("market regimes") and see if asset correlations differ during those regimes.
 
+image 6 Annotated Drawdowns Plot for SPX (with Gold/Silver Overlays)
+![alt text](<image 6.png>)
+
 ### Running the Complete Analysis
 
 ```bash
