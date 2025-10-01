@@ -236,7 +236,3 @@ I refactored a few sections of my code, particularly including a flake8 portion 
 - Author: Michael Badu
 - Email: michael.badu@duke.edu
 - GitHub: @mbadu1
-
-## Disclosure
-
-This project was developed with partial assistance from ChatGPT an AI language model by OpenAI. ChatGPT was helpful for test scenerio's generation and this readme file
